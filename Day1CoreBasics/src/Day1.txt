@@ -1,0 +1,18 @@
+->What is a Variable?
+->Types of Variables
+->Data Types in Java
+->Why is main() method static?
+->What happens if we don’t write main() method?
+->Can we change main() method signature?
+->Can Local Variables be static?
+->Default value of instance variables?
+->Why String is non-primitive?
+->Difference between float and double?
+->Why char size is 2 bytes?
+->Why Java is platform independent?
+->Difference between JDK, JRE, JVM?
+->Why Java is not 100% object-oriented?
+->What is type casting?
+->Difference between primitive and non-primitive?
+->Why System.out.println is used?
+->Can we write program without class in Java?
