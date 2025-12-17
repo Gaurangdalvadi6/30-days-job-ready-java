@@ -1,0 +1,138 @@
+🔹 Java Control Statements
+
+Control statements decide flow of execution in a program.
+
+Types
+
+1️⃣ Conditional statements
+2️⃣ Looping statements
+3️⃣ Jump statements
+
+1️⃣ Conditional Statements
+✅ if statement
+Interview Point: Executes block only if condition is true.
+
+✅ if–else
+Interview Question:
+❓ Can else exist without if?
+👉 ❌ No
+
+✅ else if ladder
+Interview Tip: Conditions checked top to bottom.
+
+✅ switch statement
+Important Interview Points
+break avoids fall-through
+Supports int, char, String (not float, double)
+
+
+2️⃣ Looping Statements
+🔁 for loop
+Best for: Fixed number of iterations
+
+🔁 while loop
+Best for: Condition-based looping
+
+🔁 do–while loop
+Interview Trap Question:
+❓ Will it execute at least once?
+👉 ✅ YES
+
+
+3️⃣ Jump Statements
+🔸 break
+🔸 continue
+
+🔥 Most Asked Interview Questions
+❓ Difference between for and while?
+for → known iterations
+while → unknown iterations
+
+❓ Difference between while and do-while?
+while → checks condition first
+do-while → executes at least once
+
+❓ Can switch work without break?
+👉 Yes, but causes fall-through
+
+🧠 One-Line Interview Revision
+✔ if → condition check
+✔ switch → multiple choices
+✔ for → fixed loop
+✔ while → condition loop
+✔ do-while → runs once minimum
+
+🎯 Practice (Very Important)
+1️⃣ Print numbers 1–100
+2️⃣ Check prime number
+3️⃣ Reverse a number
+4️⃣ Fibonacci series
+5️⃣ Factorial using loop
+
+
+🔹 OOP Concepts (Java)
+1️⃣ Class & Object
+
+✅ Class
+A class is a blueprint/template from which objects are created.
+
+✅ Object
+An object is a real instance of a class.
+
+Class is logical, object is physical.
+
+2️⃣ Constructor
+✅ What is Constructor?
+A constructor is a special method used to initialize objects.
+Rules
+✔ Same name as class
+✔ No return type
+✔ Automatically called
+
+3️⃣ this Keyword
+✅ Purpose
+this refers to the current object.
+Uses
+✔ Distinguish instance & local variables
+✔ Call current class constructor
+✔ Pass current object
+
+this removes confusion between instance and local variables.
+
+4️⃣ Encapsulation (Getter / Setter)
+✅ What is Encapsulation?
+Wrapping data + methods into a single unit and hiding data using private.
+Benefits
+✔ Data security
+✔ Controlled access
+✔ Maintainability
+
+❓ What is OOP?
+✅ Answer
+OOP (Object-Oriented Programming) is a programming approach based on objects, which contain data and behavior.
+👉 Key pillars:
+Class, Object, Encapsulation, Inheritance, Polymorphism, Abstraction
+
+❓ Why Encapsulation?
+✅ Answer
+Encapsulation is used to protect data, hide implementation details, and provide controlled access using getters and setters.
+👉 Improves security & maintainability.
+
+❓ Difference between Class & Object?
+| Class     | Object      |
+| --------- | ----------- |
+| Blueprint | Real entity |
+| Logical   | Physical    |
+| No memory | Uses memory |
+| Single    | Multiple    |
+
+👉 Example:
+Class = Car
+Object = BMW, Audi
+
+🧠 One-Line Interview Revision
+✔ Class → blueprint
+✔ Object → instance
+✔ Constructor → initialize object
+✔ this → current object
+✔ Encapsulation → data hiding
