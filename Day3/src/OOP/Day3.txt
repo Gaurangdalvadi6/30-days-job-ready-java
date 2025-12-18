@@ -1,0 +1,312 @@
+🔹 Inheritance & Polymorphism (Java)
+1️⃣ Inheritance
+✅ What is Inheritance?
+Inheritance is a mechanism where one class acquires the properties and methods of another class.
+👉 Keyword used: extends
+
+🔑 Interview Points
+✔ Code reusability
+✔ IS-A relationship
+✔ Supports method overriding
+
+❌ Multiple Inheritance in Java?
+❌ Not supported using classes
+✅ Supported using interfaces
+
+2️⃣ Types of Inheritance (Interview Theory)
+| Type                 | Java Support |
+| -------------------- | ------------ |
+| Single               | ✅            |
+| Multilevel           | ✅            |
+| Hierarchical         | ✅            |
+| Multiple (class)     | ❌            |
+| Multiple (interface) | ✅            |
+
+2️⃣ Polymorphism
+✅ What is Polymorphism?
+Polymorphism means one method, many forms.
+👉 Achieved using:
+Method Overloading (compile-time)
+Method Overriding (runtime)
+
+🔁 Method Overloading (Compile-Time Polymorphism)
+🔑 Interview Points
+✔ Same method name
+✔ Different parameters
+✔ Same class
+
+🔄 Method Overriding (Runtime Polymorphism)
+🔑 Interview Points
+✔ Same method signature
+✔ Different class (IS-A)
+✔ Runtime decision
+
+⚠ Very Important Interview Difference
+Overloading vs Overriding
+| Feature      | Overloading  | Overriding |
+| ------------ | ------------ | ---------- |
+| Polymorphism | Compile-time | Runtime    |
+| Parameters   | Must differ  | Same       |
+| Inheritance  | Not required | Required   |
+| Method call  | Compile time | Runtime    |
+
+
+❓ Why Java does not support multiple inheritance?
+To avoid Diamond Problem.
+
+❓ What is super keyword?
+Used to refer parent class object, variables, and constructors.
+
+❓ Can we override static method?
+❌ No (method hiding, not overriding)
+
+🧠 One-Line Interview Revision
+✔ Inheritance → IS-A
+✔ Polymorphism → many forms
+✔ Overloading → compile-time
+✔ Overriding → runtime
+✔ extends → inheritance
+
+🔹 Abstraction & Interface (Java)
+1️⃣ Abstraction
+✅ What is Abstraction?
+Abstraction means hiding implementation details and showing only essential features.
+👉 Focus on what object does, not how it does.
+
+🔹 How to achieve Abstraction in Java?
+1️⃣ Abstract class
+2️⃣ Interface
+
+🧩 Abstract Class
+✅ Features
+✔ Can have abstract & non-abstract methods
+✔ Cannot be instantiated
+✔ Can have constructors
+✔ Can have instance variables
+
+🔑 Interview Line
+👉 Abstract class gives partial abstraction.
+
+
+2️⃣ Interface
+✅ What is Interface?
+An interface is a 100% abstraction blueprint (till Java 7).
+
+Features
+✔ Supports multiple inheritance
+✔ Methods are public abstract by default
+✔ Variables are public static final
+✔ No constructor
+
+🔥 Abstract Class vs Interface (Interview Favorite)
+| Feature              | Abstract Class      | Interface                          |
+| -------------------- | ------------------- | ---------------------------------- |
+| Methods              | Abstract + concrete | Abstract (default allowed Java 8+) |
+| Variables            | Instance allowed    | public static final                |
+| Multiple inheritance | ❌                   | ✅                                  |
+| Constructor          | ✅                   | ❌                                  |
+| Access               | Any                 | public only                        |
+
+
+⚠ Java 8+ Interface Update (IMP)
+Interface can have:
+✔ default methods
+✔ static methods
+
+🎯 Interview Questions & Answers
+❓ Why use abstraction?
+✔ Reduce complexity
+✔ Increase security
+✔ Improve flexibility
+
+❓ Can abstract class have constructor?
+✅ Yes (used for initialization)
+
+❓ Can interface have variables?
+✅ Yes, but they are public static final
+
+❓ Can we create object of abstract class or interface?
+❌ No
+
+🧠 One-Line Interview Revision
+✔ Abstraction → hide implementation
+✔ Abstract class → partial abstraction
+✔ Interface → full abstraction
+✔ Interface → multiple inheritance
+
+⭐ Final Interview Summary (Memorize This)
+Encapsulation ≠ getters/setters
+Encapsulation = data hiding + controlled access
+Private constructor prevents new keyword usage
+Singleton ensures single object creation
+
+
+🔥 CLASS & OBJECT – Tricky Questions
+1️⃣ What is the difference between Class and Object?
+Answer:
+Class → blueprint, logical, no memory
+Object → real entity, physical, occupies memory
+👉 Trick: Class loads once, objects can be many.
+
+2️⃣ Can a class exist without objects?
+✅ Yes
+Example: utility classes like Math, System
+
+3️⃣ Can object exist without class?
+❌ No (Except JVM internal objects)
+
+4️⃣ How many times class is loaded in JVM?
+✅ Only once per classloader
+
+5️⃣ Can a class be declared final?
+✅ Yes → cannot be inherited
+
+🔥 ENCAPSULATION – Tricky Questions
+6️⃣ What is encapsulation in one line?
+Answer:
+Wrapping data + methods and hiding data using private access.
+
+7️⃣ Is encapsulation possible without getters/setters?
+✅ Yes
+But getters/setters provide controlled access.
+
+8️⃣ Why variables are kept private?
+✔ Data security
+✔ Validation
+✔ Read-only / write-only access
+
+9️⃣ Is encapsulation same as data hiding?
+❌ No
+| Encapsulation | Data Hiding           |
+| ------------- | --------------------- |
+| Concept       | Technique             |
+| Uses class    | Uses access modifiers |
+
+🔟 Can we achieve encapsulation without OOP?
+❌ No
+
+🔥 INHERITANCE – Tricky Questions
+1️⃣1️⃣ Why Java does NOT support multiple inheritance with classes?
+👉 To avoid Diamond Problem
+
+1️⃣2️⃣ What is IS-A relationship?
+Inheritance relationship
+ex.
+Dog extends Animal
+
+1️⃣3️⃣ Can constructor be inherited?
+❌ No
+But can be called using super()
+
+1️⃣4️⃣ Can private members be inherited?
+❌ No (but accessible via public methods)
+
+1️⃣5️⃣ Can we reduce visibility while overriding?
+❌ No
+✔ Can increase visibility only
+
+1️⃣6️⃣ Can final method be overridden?
+❌ No
+
+1️⃣7️⃣ Can static method be overridden?
+❌ No → Method Hiding
+
+🔥 POLYMORPHISM – Tricky Questions
+1️⃣8️⃣ What is polymorphism in one line?
+One method, many forms
+
+1️⃣9️⃣ Difference between overloading & overriding?
+| Overloading       | Overriding     |
+| ----------------- | -------------- |
+| Compile-time      | Runtime        |
+| Same class        | Parent-child   |
+| Parameters differ | Same signature |
+
+2️⃣0️⃣ Can we overload main method?
+
+✅ Yes
+But JVM calls only:
+Ex.
+public static void main(String[] args)
+
+2️⃣1️⃣ Can we override main method?
+❌ No (static method)
+
+2️⃣2️⃣ Why overriding is runtime polymorphism?
+Because JVM decides method call at runtime based on object.
+
+2️⃣3️⃣ What is upcasting?
+ex.
+Parent p = new Child();
+✔ Used for runtime polymorphism
+
+2️⃣4️⃣ What is downcasting?
+ex.
+Child c = (Child) p;
+⚠ Risky → ClassCastException
+
+
+🔥 ABSTRACTION – Tricky Questions
+2️⃣5️⃣ What is abstraction in simple words?
+Showing what, hiding how
+
+2️⃣6️⃣ Difference between abstraction & encapsulation?
+| Abstraction                    | Encapsulation           |
+| ------------------------------ | ----------------------- |
+| Design level                   | Implementation level    |
+| What                           | How                     |
+| Achieved by abstract/interface | private + getter/setter |
+
+2️⃣7️⃣ Can abstract class have constructor?
+✅ Yes (for initialization)
+
+2️⃣8️⃣ Can abstract class have non-abstract methods?
+✅ Yes
+
+2️⃣9️⃣ Can interface have constructor?
+❌ No
+
+3️⃣0️⃣ Can interface have variables?
+✅ Yes → public static final only
+
+3️⃣1️⃣ Why interface supports multiple inheritance?
+Because no implementation → no ambiguity
+
+3️⃣2️⃣ Abstract class vs Interface (1 line)?
+👉 Abstract = partial abstraction
+👉 Interface = full abstraction
+
+
+🔥 MIXED OOP TRAP QUESTIONS
+3️⃣3️⃣ Why Java is not 100% OOP?
+✔ Primitive data types
+✔ Static members
+
+3️⃣4️⃣ Can we create object of abstract class?
+❌ No
+
+3️⃣5️⃣ Can we create reference of abstract class?
+✅ Yes
+
+3️⃣6️⃣ Can constructor be private?
+✅ Yes (Singleton pattern)
+
+3️⃣7️⃣ Why use super keyword?
+✔ Access parent members
+✔ Call parent constructor
+
+3️⃣8️⃣ Can we override private method?
+❌ No (not visible)
+
+3️⃣9️⃣ Which OOP concept improves security?
+👉 Encapsulation
+
+4️⃣0️⃣ Which OOP concept improves code reuse?
+👉 Inheritance
+
+🧠 FINAL INTERVIEW ONE-LINERS (MEMORIZE 🔥)
+Encapsulation → data security
+Inheritance → code reuse
+Polymorphism → flexibility
+Abstraction → complexity reduction
+Interface → multiple inheritance
