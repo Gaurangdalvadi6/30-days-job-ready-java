@@ -1,0 +1,2 @@
+writing using BufferedWriter
+This data is added through append

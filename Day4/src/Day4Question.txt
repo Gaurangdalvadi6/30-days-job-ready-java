@@ -1,0 +1,155 @@
+✅ PART 1: Exception Handling
+1️⃣ try – catch
+What is Exception?
+An unexpected runtime error that stops normal program flow.
+2️⃣ Multiple Catch
+👉 Specific → General
+3️⃣ Custom Exception
+When to use?
+When business rules fail.
+
+
+✅ PART 2: Collections Framework
+🔹 Why Collections over Array? (VERY IMPORTANT)
+| Array            | Collections       |
+| ---------------- | ----------------- |
+| Fixed size       | Dynamic size      |
+| No methods       | Rich methods      |
+| Homogeneous      | Can store objects |
+| No ready sorting | Sorting/searching |
+👉 Interview Line: Collections are flexible and powerful.
+
+🔹 List Interface (ArrayList)
+Store users dynamically
+
+🔹 Map Interface (HashMap)
+Store user data as key-value
+
+🔹 List
+Allows duplicates
+Maintains insertion order
+Index-based access
+Use case
+👉 When order matters (users list, products)
+
+🔹 Set
+❌ No duplicates
+❌ No index
+Unordered (HashSet)
+
+Use case
+👉 Unique data (email IDs, roll numbers)
+
+
+Example
+
+🎯 INTERVIEW QUESTIONS & ANSWERS
+❓ Checked vs Unchecked Exception
+| Checked           | Unchecked                |
+| ----------------- | ------------------------ |
+| Compile-time      | Runtime                  |
+| Must handle       | Optional                 |
+| IOException       | NullPointerException     |
+| extends Exception | extends RuntimeException |
+👉 Interview Line: Checked exceptions are checked at compile time.
+
+❓ Why Map is used?
+✅ Answer
+Map is used to store data in key–value pairs for fast searching.
+🔑 Benefits
+✔ No duplicate keys
+✔ Fast lookup
+✔ Real-world mapping
+
+🔥 Interview Comparison Table
+| Feature      | List   | Set  | Map     |
+| ------------ | ------ | ---- | ------- |
+| Duplicate    | ✅      | ❌    | ❌ (key) |
+| Order        | ✅      | ❌    | ❌       |
+| Access       | Index  | ❌    | Key     |
+| Search speed | Medium | Fast | Fastest |
+
+Java 8 – Lambda & Stream (INTERVIEW FAVORITE)
+🔹 Lambda Expression
+Interview Line
+👉 Lambda reduces boilerplate code.
+
+🔹 Stream API
+✔ Filter
+✔ Sort
+✔ Map
+✔ Reduce
+
+🧠 One-Line Interview Revision
+✔ try-catch → handle runtime error
+✔ custom exception → business rules
+✔ List → ordered collection
+✔ Map → key-value storage
+
+🧠 FINAL DAY 4 REVISION (MEMORIZE 🔥)
+try-catch → runtime safety
+custom exception → business rules
+List → ordered data
+Set → unique data
+Map → fast search
+Java 8 → clean & functional code
+
+
+📁 File Handling (Java)
+1️⃣ What is File Handling?
+✅ Interview Answer
+File handling is used to store data permanently in a file instead of memory (RAM).
+👉 Data remains even after program ends.
+
+2️⃣ File Class (java.io)
+Used to:
+Create file
+Check existence
+Get file info
+
+3️⃣ Write Data to File
+✍ Using FileWriter
+🔑 Interview Points
+✔ .write() method Overwrites existing data
+✔ Must close file
+
+4️⃣ Append Data to File
+FileWriter fw = new FileWriter("data.txt", true);
+true is define data append
+
+5️⃣ Read Data from File
+📖 Using FileReader
+
+6️⃣ Better Way: BufferedReader
+🔑 Why BufferedReader?
+✔ Faster
+✔ Reads line by line
+
+🎯 INTERVIEW QUESTIONS & ANSWERS
+❓ Why file handling is needed?
+✔ Permanent storage
+✔ Large data handling
+✔ Data sharing
+
+❓ Difference: FileWriter vs BufferedWriter?
+| FileWriter      | BufferedWriter   |
+| --------------- | ---------------- |
+| Writes directly | Writes in buffer |
+| Slower          | Faster           |
+| Simple          | Efficient        |
+
+❓ Checked or Unchecked Exception?
+👉 File handling throws Checked Exceptions (IOException)
+
+❓ What is try-with-resources?
+Automatically closes resources.
+
+❓ Can Java read/write binary files?
+✅ Yes → FileInputStream, FileOutputStream
+
+🧠 One-Line Interview Revision
+✔ File → permanent storage
+✔ FileWriter → write text
+✔ FileReader → read text
+✔ BufferedReader → fast reading
+✔ IOException → checked exception
