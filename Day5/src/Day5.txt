@@ -1,0 +1,122 @@
+📦 Serialization & Deserialization
+
+1️⃣ What is Serialization?
+✅ Interview Answer
+Serialization is the process of converting an object into a byte stream so it can be:
+saved to a file
+sent over network
+stored permanently
+👉 Reverse process = Deserialization
+
+2️⃣ Why Serialization is Needed?
+✔ Save object state
+✔ Data transfer
+✔ Caching
+✔ Persistence
+
+3️⃣ Serializable Interface
+Marker interface (no methods)
+Present in java.io
+JVM uses it to allow serialization
+
+4️⃣ transient Keyword (VERY IMPORTANT)
+✅ Purpose
+Prevents variable from being serialized
+Used for passwords / sensitive data
+ex.
+transient String password;
+Interview Line
+👉 Transient fields are ignored during serialization.
+
+5️⃣ Is Serialization secure?
+❌ No
+👉 Use encryption + transient
+
+6️⃣ Can static variables be serialized?
+❌ No (belong to class)
+
+7️⃣ Difference: Serialization vs Deserialization
+| Serialization | Deserialization |
+| ------------- | --------------- |
+| Object → file | File → object   |
+| writeObject() | readObject()    |
+| Save state    | Restore state   |
+
+8️⃣ serialVersionUID (INTERVIEW TRAP)
+ex.
+private static final long serialVersionUID = 1L;
+Why?
+✔ Version control
+✔ Avoid InvalidClassException
+
+9️⃣ What Happens If Class Is NOT Serializable?
+Exception in thread "main"
+java.io.NotSerializableException
+
+❓ Can constructor run during deserialization?
+❌ No
+
+❓ Can transient variable be restored?
+✅ Yes, manually (after deserialization)
+
+❓ Serializable vs Externalizable?
+| Serializable | Externalizable    |
+| ------------ | ----------------- |
+| Automatic    | Manual            |
+| Easy         | Fast & controlled |
+| Less control | Full control      |
+
+
+🧠 One-Line Interview Revision (MEMORIZE 🔥)
+Serialization → object → byte stream
+Deserialization → byte stream → object
+Deserialization → constructor NOT called
+Serializable → marker interface
+transient → skip field
+serialVersionUID → version control
+
+Multithreading (Thread vs Runnable)
+🔹 What is Multithreading?
+Running multiple tasks simultaneously using multiple threads.
+👉 Improves performance and CPU utilization.
+
+🔹 Thread vs Runnable (INTERVIEW FAVORITE)
+1️⃣ Extending Thread
+2️⃣ Implementing Runnable (BEST PRACTICE)
+
+🔥 Difference Table
+| Thread              | Runnable             |
+| ------------------- | -------------------- |
+| Extends class       | Implements interface |
+| No inheritance left | Supports inheritance |
+| Less flexible       | More flexible ✅      |
+| Not preferred       | Preferred            |
+
+🎤 Interview Line
+Runnable is preferred because Java supports single inheritance.
+
+🔒 Synchronization (VERY IMPORTANT)
+👉 Prevents race condition.
+
+🎯 Multithreading Interview Traps
+Call start() → creates new thread
+Call run() → normal method
+sleep() → pause thread
+join() → wait for thread
+
+🧠 FINAL QUICK REVISION (MEMORIZE 🔥)
+Multithreading
+Runnable > Thread
+start() ≠ run()
+synchronized → thread safety
+
+Java 8
+Stream → clean processing
+filter + map + collect
+Lazy execution
+
+Spring Boot
+Controller = entry
+Service = business logic
+Repository = DB access
+DI = polymorphism
