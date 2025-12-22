@@ -1,0 +1,480 @@
+🔹 What is JPA?
+JPA (Java Persistence API) is a specification for ORM.
+👉 JPA = rules
+👉 Hibernate = implementation
+
+🔹 What is Hibernate?
+Hibernate is an ORM framework that maps:
+Java Object  ↔  Database Table
+
+🔹 Why Hibernate over JDBC? (VERY COMMON)
+| JDBC             | Hibernate      |
+| ---------------- | -------------- |
+| Manual SQL       | Automatic ORM  |
+| Boilerplate code | Less code      |
+| No caching       | Caching        |
+| DB dependent     | DB independent |
+Hibernate reduces boilerplate code and handles ORM automatically.
+
+🔹 Entity Mapping (CORE)
+ex.
+@Entity
+@Table(name = "users")
+public class User {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String name;
+}
+
+🔑 Important Annotations
+@Entity
+@Id
+@GeneratedValue
+@Column
+@Table
+
+🔹 Relationships (VERY IMPORTANT)
+One-To-Many
+ex.
+@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+private List<Order> orders;
+
+| Relation   | Example           |
+| ---------- | ----------------- |
+| OneToOne   | User → Profile    |
+| OneToMany  | User → Orders     |
+| ManyToMany | Student → Courses |
+
+🔹 Fetch Types (TRAP)
+| Fetch | Behavior                                   |
+| ----- | ------------------------------------------ |
+| EAGER | Load immediately                           |
+| LAZY  | Load when needed (default for collections) |
+Prefer LAZY to avoid performance issues.
+
+🔹 Hibernate Cache
+First level cache → Session level
+Second level cache → Application level
+
+
+1️⃣ save() vs saveAndFlush()
+✅ save()
+Saves entity in persistence context
+Does NOT immediately hit DB
+DB insert happens at transaction commit
+✅ saveAndFlush()
+Saves entity AND immediately flushes to DB
+Forces SQL execution instantly
+
+🎤 Interview One-Liner
+save() waits for transaction commit, saveAndFlush() forces immediate DB sync.
+
+⚠ Trap
+❌ Overusing saveAndFlush() → performance issue
+
+2️⃣ get() vs load() (CLASSIC TRAP)
+| get()                       | load()           |
+| --------------------------- | ---------------- |
+| Hits DB immediately         | Returns proxy    |
+| Returns `null` if not found | Throws exception |
+| Safe                        | Risky            |
+🎤 Interview One-Liner
+get() is safe and eager, load() is lazy and throws exception if entity not found.
+
+❓ Lazy vs Eager (VERY IMPORTANT)
+| Lazy                    | Eager                 |
+| ----------------------- | --------------------- |
+| Loaded when accessed    | Loaded immediately    |
+| Better performance      | Can cause overhead    |
+| Default for collections | Default for ManyToOne |
+Prefer LAZY loading to avoid unnecessary DB calls.
+
+❓ What are Cascade Types?
+| Cascade Type | Meaning                  |
+| ------------ | ------------------------ |
+| PERSIST      | Save child with parent   |
+| MERGE        | Update child with parent |
+| REMOVE       | Delete child with parent |
+| REFRESH      | Sync from DB             |
+| DETACH       | Detach child             |
+| ALL          | All of above             |
+Cascade defines how parent operations affect child entities.
+
+🔹 OOP ROUND
+❓ Diamond Problem (VERY COMMON)
+❓ What is Diamond Problem?
+Ambiguity caused by multiple inheritance.
+    A
+   / \
+  B   C
+   \ /
+    D
+❌ Java with Classes
+❌ NOT allowed (to avoid ambiguity)
+✅ Java with Interfaces
+✅ Allowed (method implementation forced)
+🎤 Interview One-Liner
+Java avoids diamond problem by not supporting multiple inheritance with classes.
+
+🧠 FINAL INTERVIEW CHEAT-SHEET (MEMORIZE 🔥)
+save() → delayed DB hit
+saveAndFlush() → immediate DB hit
+get() → null safe
+load() → proxy + exception
+Cascade.ALL → dangerous
+Lazy > Eager
+Diamond problem → multiple inheritance
+@RestController → REST APIs
+@Service → business logic
+@RestControllerAdvice → global errors
+
+
+Java Collection Framework
+1️⃣ What is Collection Framework?
+✅ Definition (Interview Answer)
+The Collection Framework is a set of classes and interfaces used to store, manipulate, and retrieve groups of objects dynamically.
+👉 Introduced in Java 1.2
+
+2️⃣ Why Collection Framework? (WHY NOT ARRAY)
+| Array               | Collection              |
+| ------------------- | ----------------------- |
+| Fixed size          | Dynamic size            |
+| No built-in methods | Rich APIs               |
+| Primitive + Object  | Object only             |
+| Manual logic        | Ready sorting/searching |
+Collections are flexible, dynamic, and provide ready-made algorithms.
+
+3️⃣ Core Interfaces in Collection Framework
+Iterable
+   |
+Collection
+   |
+--------------------------------
+|              |               |
+List           Set             Queue
+
+Map (separate hierarchy)
+
+🔹 4️⃣ List Interface (ORDER + DUPLICATES)
+✅ Properties
+Allows duplicate elements
+Maintains insertion order
+Index-based access
+
+🔸 ArrayList
+Internal Working
+Uses dynamic array
+Default capacity = 10
+When full → new array = old * 1.5
+ex.
+List<Integer> list = new ArrayList<>();
+list.add(10);
+list.add(20);
+
+Pros / Cons
+✔ Fast access (O(1))
+❌ Slow insertion/deletion in middle
+
+🔸 LinkedList
+Internal Working
+->Doubly linked list
+->Each node stores data + prev + next
+ex.
+List<Integer> list = new LinkedList<>();
+
+🔸 Vector (LEGACY)
+->Thread-safe
+->Synchronized
+->Slow → Avoid
+
+📌 List Comparison (INTERVIEW FAVORITE)
+| Feature        | ArrayList     | LinkedList         |
+| -------------- | ------------- | ------------------ |
+| Data structure | Dynamic array | Doubly linked list |
+| Access         | Fast          | Slow               |
+| Insert/Delete  | Slow          | Fast               |
+| Memory         | Less          | More               |
+
+🔹 5️⃣ Set Interface (UNIQUE ELEMENTS)
+✅ Properties
+❌ No duplicates
+❌ No index
+Unordered (mostly)
+
+🔸 HashSet
+Internal Working
+->Uses HashMap
+->Elements stored as keys
+ex.
+Set<String> set = new HashSet<>();
+set.add("A");
+set.add("A"); // ignored
+
+✔ Fast
+❌ No order
+
+🔸 LinkedHashSet
+->Maintains insertion order
+->Slightly slower than HashSet
+
+🔸 TreeSet
+->Sorted order
+->Uses Red-Black Tree
+->O(log n)
+ex.
+Set<Integer> set = new TreeSet<>();
+❌ No null allowed
+
+📌 Set Comparison
+| Set           | Order  | Duplicate | Null |
+| ------------- | ------ | --------- | ---- |
+| HashSet       | ❌      | ❌         | 1    |
+| LinkedHashSet | ✅      | ❌         | 1    |
+| TreeSet       | Sorted | ❌         | ❌    |
+
+🔹 6️⃣ Map Interface (KEY → VALUE)
+✅ Properties
+->Key-value pair
+->❌ Duplicate keys
+->Values can duplicate
+->Fast searching
+
+🔸 HashMap (MOST USED)
+Internal Working
+->Uses hashing
+->Buckets + linked list / tree
+ex.
+Map<Integer,String> map = new HashMap<>();
+map.put(1,"Amit");
+✔ Fast
+✔ 1 null key, many null values
+
+🔸 LinkedHashMap
+Maintains insertion order
+
+🔸 TreeMap
+Sorted by key
+No null key
+
+🔸 Hashtable (LEGACY)
+Thread-safe
+Slow
+No null key/value
+
+📌 Map Comparison (INTERVIEW GOLD)
+| Map           | Order  | Null Key | Thread Safe |
+| ------------- | ------ | -------- | ----------- |
+| HashMap       | ❌      | 1        | ❌           |
+| LinkedHashMap | ✅      | 1        | ❌           |
+| TreeMap       | Sorted | ❌        | ❌           |
+| Hashtable     | ❌      | ❌        | ✅           |
+
+🔥 7️⃣ Time Complexity (VERY IMPORTANT)
+| Operation | ArrayList | HashMap | HashSet |
+| --------- | --------- | ------- | ------- |
+| Add       | O(1)      | O(1)    | O(1)    |
+| Search    | O(n)      | O(1)    | O(1)    |
+| Delete    | O(n)      | O(1)    | O(1)    |
+
+🔥 8️⃣ Iterator vs ListIterator
+| Iterator        | ListIterator           |
+| --------------- | ---------------------- |
+| Forward only    | Forward + backward     |
+| All collections | List only              |
+| remove()        | add(), set(), remove() |
+
+🔥 9️⃣ Comparable vs Comparator (TRAP)
+Comparable
+ex.
+class Student implements Comparable<Student> {
+    public int compareTo(Student s) {
+        return Integer.compare(this.id, s.id);
+    }
+}
+
+Comparator
+ex.
+Collections.sort(list, (a,b) -> a.name.compareTo(b.name));
+
+| Comparable    | Comparator    |
+| ------------- | ------------- |
+| Natural order | Custom order  |
+| Inside class  | Outside class |
+
+🔥 🔟 Thread-Safe Collections
+❌ Avoid Vector, Hashtable
+✅ Use:
+EX.
+Collections.synchronizedList(list);
+ConcurrentHashMap
+CopyOnWriteArrayList
+
+❓ Why HashMap faster than ArrayList?
+👉 Direct key access, no traversal
+
+❓ Why TreeMap slower than HashMap?
+👉 Sorting overhead (O(log n))
+
+❓ Why Map not part of Collection?
+👉 Different structure (key-value)
+
+❓ When to use Set?
+👉 When uniqueness matters
+
+❓ Fail-Fast vs Fail-Safe?
+Fail-Fast → throws ConcurrentModificationException
+Fail-Safe → works on copy (Concurrent collections)
+
+🧠 ONE-PAGE INTERVIEW REVISION (MEMORIZE 🔥)
+List → ordered + duplicate
+Set → unique
+Map → key-value
+ArrayList → fast access
+LinkedList → fast insert
+HashMap → fastest search
+TreeMap → sorted
+ConcurrentHashMap → thread safe
+
+
+🔥 Java 8 Stream API with Collections (IN DETAIL)
+1️⃣ What is Stream API?
+✅ Interview Answer
+Stream API is used to process collections in a functional and declarative way.
+👉 Stream ≠ Collection
+Collection → stores data
+Stream → processes data
+
+2️⃣ Why Stream API? (Why not loops?)
+| Loop             | Stream              |
+| ---------------- | ------------------- |
+| More code        | Less code           |
+| Hard to read     | Clean & readable    |
+| Error-prone      | Functional          |
+| Manual filtering | Built-in operations |
+Stream API makes data processing clean, readable, and efficient.
+
+3️⃣ Stream Pipeline (CORE CONCEPT)
+Collection → Stream → Operation → Result
+ex.
+list.stream()
+    .filter()
+    .map()
+    .collect();
+
+4️⃣ Common Stream Operations (MEMORIZE)
+🔹 Intermediate Operations (Lazy)
+filter()
+map()
+sorted()
+distinct()
+
+🔹 Terminal Operations
+forEach()
+collect()
+count()
+findFirst()
+reduce()
+
+filter: filter() is used to select matching elements.
+
+❓ Why Stream is lazy?
+👉 Intermediate operations execute only when terminal operation is called.
+
+❓ What is Optional?
+👉 Wrapper to avoid NullPointerException.
+
+❓ Can we reuse a stream?
+❌ No (stream is single-use).
+
+❓ Parallel Stream?
+ex.
+employees.parallelStream()
+
+✔ Uses multiple threads
+❌ Use carefully (not always faster)
+
+🧠 ONE-PAGE INTERVIEW REVISION (MEMORIZE 🔥)
+filter → select
+map → transform
+collect → result
+groupingBy → classification
+toMap → key-value
+Optional → null safety
+
+
+🧠 INTERVIEW GOLD RULES (MEMORIZE 🔥)
+
+✔ Stream is single-use
+✔ filter → selection
+✔ map → transformation
+✔ reduce → aggregation
+✔ findFirst → Optional
+✔ distinct → uniqueness
+✔ sorted → ordering
+
+❓ What is Optional?
+✅ Interview Answer
+Optional is a container object used to avoid NullPointerException.
+
+⚠️ TRAP 1: Optional.of() vs Optional.ofNullable()
+Use ofNullable() when value may be null.
+
+⚠️ TRAP 2: get() without checking
+Never call get() without checking presence.
+
+⚠️ TRAP 3: orElse() vs orElseGet() (VERY IMPORTANT)
+| Method    | Behavior               |
+| --------- | ---------------------- |
+| orElse    | Always executes        |
+| orElseGet | Executes only if empty |
+Prefer orElseGet() for performance.
+
+⚠️ TRAP 4: isPresent() misuse
+❌ Bad:
+ex.
+if(opt.isPresent()) {
+    System.out.println(opt.get());
+}
+
+✅ Good:
+ex.
+opt.ifPresent(System.out::println);
+ifPresent() is cleaner and safer.
+
+⚠️ TRAP 5: Optional as method parameter ❌
+ex.
+void test(Optional<String> name) {} // ❌ bad practice
+Optional is meant for return types, not parameters.
+
+⚠️ TRAP 6: Optional inside entity ❌
+ex.
+class User {
+    Optional<String> name; // ❌ avoid
+}
+Do not use Optional as field type.
+
+🧠 OPTIONAL – QUICK INTERVIEW REVISION
+of() → never null
+ofNullable() → safe
+get() → risky
+orElseGet() > orElse
+Use Optional in return, not fields/params
+
+🧠 STREAM PERFORMANCE – QUICK INTERVIEW RULES
+Prefer sequential stream by default
+Use parallelStream only when needed
+Avoid side effects
+Filter early
+Avoid blocking calls
+Use correct terminal operation
+
+🔥 FINAL INTERVIEW ONE-LINERS (MEMORIZE)
+Optional avoids null pointer exception(NPE)
+ofNullable() is safe
+orElseGet() is lazy
+Stream is single-use
+parallelStream ≠ faster always
+Streams should be side-effect free
