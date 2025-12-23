@@ -1,0 +1,163 @@
+❓ What is PRIMARY KEY?
+Answer (Interview Ready):
+A Primary Key is a column (or combination of columns) that uniquely identifies each record in a table.
+It cannot be NULL and must be unique.
+ex.
+id INT PRIMARY KEY
+
+❓ Difference between DELETE & TRUNCATE
+| Feature       | DELETE     | TRUNCATE       |
+| ------------- | ---------- | -------------- |
+| Type          | DML        | DDL            |
+| WHERE allowed | ✅ Yes      | ❌ No           |
+| Rollback      | ✅ Possible | ❌ Not possible |
+| Speed         | Slower     | Faster         |
+| Deletes rows  | One by one | All at once    |
+DELETE removes rows conditionally and can be rolled back, whereas TRUNCATE removes all rows permanently and resets the table.
+
+❓ DELETE vs DROP
+DELETE → removes rows
+TRUNCATE → removes all rows
+DROP → removes entire table
+
+🧠 HOW THIS CONNECTS TO SPRING BOOT
+These SQL queries are written in:
+JPA Repository
+@Query annotation
+Native Queries
+Tables → @Entity
+Primary Key → @Id
+
+❓ Difference between CHAR vs VARCHAR (TRAP 🔥)
+| CHAR                  | VARCHAR         |
+| --------------------- | --------------- |
+| Fixed length          | Variable length |
+| Faster for fixed data | Saves space     |
+| Wastes memory         | Efficient       |
+Use CHAR when data length is fixed (like gender, country code).
+Use VARCHAR when length varies (name, email).
+
+❓ INT vs BIGINT (TRAP)
+| INT            | BIGINT            |
+| -------------- | ----------------- |
+| 4 bytes        | 8 bytes           |
+| Max ~2 billion | Very large values |
+Salary may fit in INT today but not tomorrow → use BIGINT for safety.
+
+❓ Can PRIMARY KEY be NULL?
+❌ NO
+❓ Can UNIQUE be NULL?
+✅ YES (multiple NULLs allowed)
+Primary key ensures entity identity, unique ensures data constraint.
+
+❓ PRIMARY KEY vs UNIQUE (TRAP 🔥)
+| Primary Key             | Unique              |
+| ----------------------- | ------------------- |
+| One per table           | Multiple allowed    |
+| Not NULL                | Can be NULL         |
+| Creates clustered index | Non-clustered index |
+
+❓ What is INDEX?
+Index improves SELECT performance by reducing full table scan.
+Index slows down INSERT, UPDATE, DELETE.
+
+❓ When NOT to use Index?
+Small tables
+Columns frequently updated
+Low cardinality (gender)
+
+❓ Can DELETE be rolled back?
+✅ Yes (if transaction)
+
+❓ Can TRUNCATE be rolled back?
+❌ No
+
+❓ Why TRUNCATE is faster?
+It deallocates pages instead of deleting row-by-row.
+
+❓ Difference between WHERE and HAVING?
+| WHERE                | HAVING              |
+| -------------------- | ------------------- |
+| Filters rows         | Filters groups      |
+| Used before GROUP BY | Used after GROUP BY |
+| Cannot use aggregate | Can use aggregate   |
+ex.
+SELECT dept_id, COUNT(*)
+FROM employee
+GROUP BY dept_id
+HAVING COUNT(*) > 2;
+note: WHERE works on rows, HAVING works on aggregated data.
+
+❓ INNER JOIN vs LEFT JOIN
+| INNER JOIN         | LEFT JOIN           |
+| ------------------ | ------------------- |
+| Matching rows only | All left table rows |
+| Faster             | Slightly slower     |
+ex.
+SELECT e.name, d.dept_name
+FROM employee e
+LEFT JOIN department d
+ON e.dept_id = d.dept_id;
+
+❓ What happens if JOIN condition is missing?
+💥 CARTESIAN PRODUCT (TRAP)
+ex.
+SELECT * FROM employee, department;
+👉 Rows = emp_count × dept_count
+
+❓ What is normalization?
+Process of reducing data redundancy.
+
+❓ 1NF, 2NF, 3NF (FRESHER LEVEL)
+1NF → No multiple values in column
+2NF → No partial dependency
+3NF → No transitive dependency
+⚠️ Trap:
+Over-normalization can hurt performance.
+
+❓ What is ACID?
+| A | Atomicity |
+| C | Consistency |
+| I | Isolation |
+| D | Durability |
+ex.
+START TRANSACTION;
+UPDATE account SET balance = balance - 100 WHERE id = 1;
+UPDATE account SET balance = balance + 100 WHERE id = 2;
+COMMIT;
+
+❓ What is Isolation Level? (INTERVIEW FAVORITE)
+READ UNCOMMITTED
+READ COMMITTED
+REPEATABLE READ (MySQL default)
+SERIALIZABLE
+⚠️ Trap:
+Higher isolation = safer but slower.
+
+SUBQUERY vs JOIN (TRAP)
+❓ Which is faster?
+👉 JOIN is usually faster
+
+🚀 SPRING BOOT CONNECTION (VERY IMPORTANT)
+Table → @Entity
+PK → @Id
+JOIN → @ManyToOne
+Transaction → @Transactional
+Index → @Index
+
+Types of Constraints
+PRIMARY KEY
+FOREIGN KEY
+UNIQUE
+NOT NULL
+CHECK
+DEFAULT
+
+FOREIGN KEY & REFERENTIAL INTEGRITY
+ex.
+CREATE TABLE orders (
+  order_id INT PRIMARY KEY,
+  user_id INT,
+  FOREIGN KEY (user_id) REFERENCES users(id)
+);
+

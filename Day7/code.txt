@@ -1,0 +1,139 @@
+use demo_db;
+-- create table of departments
+create table departments (
+dept_id int auto_increment primary key,
+dept_name varchar(50) unique not null
+);
+
+SELECT * FROM demo_db.departments;
+
+insert into departments (dept_name)
+values ('Recuitment');
+
+insert into demo_db.departments (dept_name)
+values('DTS');
+truncate table demo_db.departments;
+drop table demo_db.departments;
+delete from demo_db.departments where dept_id=1;
+select * from demo_db.departments;
+
+-- create table of employees
+create table employees (
+emp_id int primary key auto_increment,
+emp_name varchar(50) not null,
+salary decimal(10,2),
+dept_id int,
+constraint fk_department foreign key(dept_id)
+references demo_db.departments(dept_id)
+);
+
+insert into demo_db.employees (emp_name,salary,dept_id)
+values ('parth',45000,6);
+
+SELECT * FROM demo_db.employees;
+
+insert into demo_db.employees (emp_name,salary,dept_id)
+values ('vibhu',50000,4);
+
+insert into demo_db.employees (emp_name,salary,dept_id)
+values ('dev',40000,4);
+
+insert into demo_db.employees (emp_name,salary,dept_id)
+values ('harsh',30000,7);
+
+insert into demo_db.employees (emp_name,salary,dept_id)
+values ('abc',15000,null);
+
+delete from employees where emp_id=17;
+
+update demo_db.employees
+set email='abhay@gmail.com' where emp_id = 1;
+
+select * from demo_db.employees;
+
+-- ddl (alter)
+
+alter table demo_db.employees
+add column email varchar(50) not null;
+
+alter table demo_db.employees
+drop column email;
+
+alter table demo_db.employees
+change email email_id varchar(50);
+
+alter table demo_db.employees
+rename column email_id to email;
+
+-- DML
+SET SQL_SAFE_UPDATES = 0;
+update demo_db.employees
+set salary = salary + 5000;
+SET SQL_SAFE_UPDATES = 1;
+
+update demo_db.employees
+set emp_name = 'vibhu',salary = 45000 where emp_id = 1;
+
+SET SQL_SAFE_UPDATES = 0;
+delete from demo_db.employees;
+SET SQL_SAFE_UPDATES = 1;
+
+delete from demo_db.employees where emp_id = 1;
+
+
+-- JOINS - INNER , LEFT , RIGHT
+
+-- INNER JOIN
+select e.emp_name,d.dept_name
+from demo_db.employees e
+inner join demo_db.departments d
+on e.dept_id = d.dept_id;
+
+-- LEFT Join
+select e.emp_name,d.dept_name
+from demo_db.employees e
+left join demo_db.departments d
+on e.dept_id = d.dept_id;
+
+-- Right Join
+select e.emp_name,d.dept_name
+from demo_db.employees e
+right join demo_db.departments d
+on e.dept_id = d.dept_id;
+
+-- Full outer join
+SELECT e.emp_name, e.salary, d.dept_name
+FROM demo_db.employees e
+LEFT JOIN demo_db.departments d ON e.dept_id = d.dept_id
+
+UNION
+
+SELECT e.emp_name, e.salary, d.dept_name
+FROM demo_db.employees e
+RIGHT JOIN demo_db.departments d ON e.dept_id = d.dept_id;
+
+-- aggregrates
+select d.dept_name,count(e.emp_id)
+from demo_db.employees e
+inner join demo_db.departments d
+on e.dept_id = d.dept_id
+group by d.dept_id;
+
+select d.dept_name, e.salary
+from demo_db.employees e
+inner join demo_db.departments d
+on e.dept_id = d.dept_id;
+
+select d.dept_name, avg(e.salary)
+from demo_db.employees e
+inner join demo_db.departments d
+on e.dept_id = d.dept_id
+group by d.dept_id;
+
+
+select d.dept_name, avg(e.salary)
+from demo_db.employees e
+inner join demo_db.departments d
+on e.dept_id = d.dept_id
+group by d.dept_id
+having avg(e.salary)>30000;
