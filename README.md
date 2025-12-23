@@ -6,3 +6,4 @@ Day 3  - OOPS(abstract,inheritance,interface,polymorphism)
 Day 4  - Exception Handling(try,catch,throw),Collections(ArrayList),File Handling(File,FileWriter,BufferedWriter,FileReader,BufferedReader)       
 Day 5  - serializationDeserialization,multithreading       
 Day 6  - Hibernate, Optional, Collection Framework, Stream API use       
+Day 7  - mysql       
