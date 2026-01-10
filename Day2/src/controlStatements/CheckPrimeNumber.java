@@ -14,7 +14,7 @@ public class CheckPrimeNumber {
         return true;
     }
     public static void main(String[] args) {
-        int n = 19;
+        int n = 373;
         boolean result = isPrime(n);
         String string = result ? "Given number is Prime" : "Given number is Not Prime";
         System.out.println(string);
